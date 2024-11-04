@@ -18,20 +18,6 @@ function scrollToSection(index) {
     updateURLHash();
 }
 
-// Detect if the user is on a mobile device
-const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-if (!isMobile) {
-    // Event listener for wheel scrolling without debounce
-    window.addEventListener('wheel', (event) => {
-        if (event.deltaY > 0) {
-            scrollToSection(currentSectionIndex + 1); // Scroll down
-        } else {
-            scrollToSection(currentSectionIndex - 1); // Scroll up
-        }
-        event.preventDefault(); // Prevent default scrolling
-    });
-}
 
 
 
