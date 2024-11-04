@@ -18,37 +18,21 @@ function scrollToSection(index) {
     updateURLHash();
 }
 
-// Event listener for wheel scrolling without debounce
-window.addEventListener('wheel', (event) => {
-    if (event.deltaY > 0) {
-        scrollToSection(currentSectionIndex + 1); // Scroll down
-    } else {
-        scrollToSection(currentSectionIndex - 1); // Scroll up
-    }
-    event.preventDefault(); // Prevent default scrolling
-});
+// Detect if the user is on a mobile device
+const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-let touchStartY = 0;
-let touchEndY = 0;
-
-window.addEventListener('touchstart', (event) => {
-    touchStartY = event.touches[0].clientY;
-});
-
-window.addEventListener('touchmove', (event) => {
-    touchEndY = event.touches[0].clientY;
-});
-
-window.addEventListener('touchend', () => {
-    const touchDistance = touchStartY - touchEndY;
-    if (Math.abs(touchDistance) > 50) { // Minimum swipe distance
-        if (touchDistance > 0) {
-            scrollToSection(currentSectionIndex + 1); // Swipe up
+if (!isMobile) {
+    // Event listener for wheel scrolling without debounce
+    window.addEventListener('wheel', (event) => {
+        if (event.deltaY > 0) {
+            scrollToSection(currentSectionIndex + 1); // Scroll down
         } else {
-            scrollToSection(currentSectionIndex - 1); // Swipe down
+            scrollToSection(currentSectionIndex - 1); // Scroll up
         }
-    }
-});
+        event.preventDefault(); // Prevent default scrolling
+    });
+}
+
 
 
 // Event listener for navigation links
