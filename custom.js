@@ -19,14 +19,36 @@ function scrollToSection(index) {
 }
 
 window.addEventListener('scroll', (event) => {
+    event.preventDefault(); // Prevent default scrolling
     if (event.deltaY > 0) {
         scrollToSection(currentSectionIndex + 1); // Scroll down
     } else {
         scrollToSection(currentSectionIndex - 1); // Scroll up
     }
-    event.preventDefault(); // Prevent default scrolling
 });
 
+
+let touchStartY = 0;
+let touchEndY = 0;
+
+window.addEventListener('touchstart', (event) => {
+    touchStartY = event.touches[0].clientY;
+});
+
+window.addEventListener('touchmove', (event) => {
+    touchEndY = event.touches[0].clientY;
+});
+
+window.addEventListener('touchend', () => {
+    const touchDistance = touchStartY - touchEndY;
+    if (Math.abs(touchDistance) > 50) { // Minimum swipe distance
+        if (touchDistance > 0) {
+            scrollToSection(currentSectionIndex + 1); // Swipe up
+        } else {
+            scrollToSection(currentSectionIndex - 1); // Swipe down
+        }
+    }
+});
 
 // Event listener for navigation links
 document.querySelectorAll('a.nav-link').forEach(anchor => {
