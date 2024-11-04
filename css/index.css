@@ -46,7 +46,7 @@ h2 {
     text-align: center;
     color: white;
     position: relative;
-    overflow: hidden;
+    /*overflow: hidden;*/
     border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -107,7 +107,7 @@ body, html {
     margin: 0;
     padding: 0;
     height: 100%;
-    overflow: hidden; /* Prevent scroll bars */
+    /*overflow: hidden; !* Prevent scroll bars *!*/
 }
 
 .section {
