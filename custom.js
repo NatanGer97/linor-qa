@@ -18,15 +18,15 @@ function scrollToSection(index) {
     updateURLHash();
 }
 
-window.addEventListener('scroll', (event) => {
-    event.preventDefault(); // Prevent default scrolling
+// Event listener for wheel scrolling without debounce
+window.addEventListener('wheel', (event) => {
     if (event.deltaY > 0) {
         scrollToSection(currentSectionIndex + 1); // Scroll down
     } else {
         scrollToSection(currentSectionIndex - 1); // Scroll up
     }
+    event.preventDefault(); // Prevent default scrolling
 });
-
 
 let touchStartY = 0;
 let touchEndY = 0;
@@ -49,6 +49,7 @@ window.addEventListener('touchend', () => {
         }
     }
 });
+
 
 // Event listener for navigation links
 document.querySelectorAll('a.nav-link').forEach(anchor => {
